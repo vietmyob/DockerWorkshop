@@ -1,4 +1,4 @@
-FROM node:10.14-alpine AS build
+FROM node:10.14-alpine
 
 RUN mkdir -p /packages
 COPY package.json /packages/package.json
@@ -9,11 +9,4 @@ RUN cd /packages && yarn && \
 
 COPY . /app/viet
 WORKDIR /app/viet
-RUN yarn build
-
-FROM node:10.14-alpine
-EXPOSE 5000
-RUN yarn global add serve
-COPY --from=build /app/viet/build ./build
-
-ENTRYPOINT serve -s build
+ENTRYPOINT node index.js

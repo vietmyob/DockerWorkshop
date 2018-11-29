@@ -12,7 +12,7 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const result = await axios.get("http://localhost:8000");
+    const result = await axios.get("http://localhost:3000");
     this.setState({ welcomeMessage: result.data });
   }
 
